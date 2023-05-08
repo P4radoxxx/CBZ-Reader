@@ -36,12 +36,12 @@ class MyReader:
         next_button = tk.Button(self.master, text="Suivant", command=self.next_image)
         next_button.pack(side=tk.RIGHT, padx=10)
 
-        # Add a zoom slider
+        # Zoom slider
         zoom_scale = tk.Scale(self.master, from_=10, to=200, orient=tk.HORIZONTAL, label="Zoom (%)",
                               command=self.zoom_image)
         zoom_scale.pack(side=tk.BOTTOM, fill=tk.X)
 
-        # Set default zoom to 100%
+        # Zoom par defaut
         zoom_scale.set(100)
 
     def show_image(self):
@@ -68,23 +68,23 @@ class MyReader:
             self.show_image()
 
     def zoom_image(self, zoom):
-        # Get current image and scale factor
+        # Resize l'image 
         image = self.images[self.current_image_index]
         self.zoom_factor = float(zoom) / 100
 
-        # Resize image with new scale factor
+        # Resize selon resolution de l'user
         width = int(image.width * self.zoom_factor)
         height = int(image.height * self.zoom_factor)
         image = image.resize((width, height), Image.ANTIALIAS)
 
-        # Update canvas with new image
+        # Update le canvas
         photo = ImageTk.PhotoImage(image)
         self.canvas.delete("all")
         self.canvas.create_image(0, 0, anchor=tk.NW, image=photo)
         self.canvas.image = photo
 
 
-# Main window
+# Main 
 mainWin = tk.Tk()
 
 # Lance l'app
