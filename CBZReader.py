@@ -72,7 +72,7 @@ class MyReader:
         image = self.images[self.current_image_index]
         self.zoom_factor = float(zoom) / 100
 
-        # Resize selon resolution de l'user
+        # Resize selon le zoom choisi
         width = int(image.width * self.zoom_factor)
         height = int(image.height * self.zoom_factor)
         image = image.resize((width, height), Image.ANTIALIAS)
